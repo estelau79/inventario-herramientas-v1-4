@@ -201,3 +201,11 @@ btnNo.onclick = () => {
 
 renderizarRegistros();
 renderizarStock();
+document.getElementById("btn-limpiar").addEventListener("click", () => {
+  if (confirm("¿Estás seguro de que querés borrar todos los movimientos registrados?")) {
+    inventario = [];
+    localStorage.setItem("inventario", JSON.stringify(inventario));
+    renderizarRegistros();
+    renderizarStock();
+  }
+});
