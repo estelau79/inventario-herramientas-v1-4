@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inventario de Herramientas</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+</head>
+<body>
+  <!-- Navegación -->
+  <div class="tabs">
+    <button class="tab active" data-tab="registro">🛠️ Inventario</button>
+    <button class="tab" data-tab="stock">📦 Stock</button>
+  </div>
+
+  <!-- Pestaña Inventario -->
+  <div id="registro" class="tab-content active">
+    <div class="container">
+      <h1>📋 Inventario de Herramientas</h1>
+      <form id="formulario">
+        <input type="text" id="codigo" placeholder="Código" required />
+        <input type="text" id="descripcion" placeholder="Descripción" required />
+        <select id="movimiento">
+          <option value="Ingreso">Ingreso</option>
+          <option value="Egreso">Egreso</option>
+        </select>
+        <input type="number" id="cantidad" placeholder="Cantidad" min="1" required />
+        <button type="submit">Registrar Movimiento</button>
+      </form>
+
+      <div id="registros"></div>
+      <button id="descargarExcel" style="display:none">📥 Descargar Excel</button>
+      <button id="btn-limpiar" style="background:#dc3545;color:white;">🧹 Limpiar movimientos</button>
+    </div>
+
+    <!-- Botones flotantes -->
+    <button id="btn-ayuda">ℹ️ Ayuda</button>
+    <button id="btn-ver-stock">📦 Ver Stock</button>
+
+    <!-- Ventana modal ayuda -->
+    <div id="modal-ayuda" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Guía rápida</h2>
+        <ol>
+          <li>Ingresá código, descripción, cantidad y tipo de movimiento</li>
+          <li>Si el código existe, se autocompleta y bloquea la descripción</li>
+          <li>Consultá los egresos activos</li>
+          <li>Verificá el stock en la pestaña "📦 Stock"</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Instalación PWA -->
+    <div id="instalar-popup" class="popup">
+      <div class="popup-content">
+        <p>¿Querés instalar esta app en tu dispositivo?<br><small>Accedé más rápido y sin conexión</small></p>
+        <button id="btn-confirmar-instalar">📲 Instalar</button>
+        <button id="btn-rechazar">Ahora no</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pestaña Stock -->
+  <div id="stock" class="tab-content">
+    <div class="container">
+      <h2>📦 Gestión de Stock</h2>
+      <form id="form-stock-inicial">
+        <input type="text" id="codigoStock" placeholder="Código" required />
+        <input type="text" id="descripcionStock" placeholder="Descripción" required />
+        <input type="number" id="stockInicial" placeholder="Stock inicial" min="0" required />
+        <button type="submit">Actualizar stock</button>
+      </form>
+      <table id="tablaStock">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Descripción</th>
+            <th>Inicial</th>
+            <th>Movimientos</th>
+            <th>Disponible</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
