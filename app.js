@@ -208,4 +208,22 @@ document.getElementById("btn-limpiar").addEventListener("click", () => {
     renderizarRegistros();
     renderizarStock();
   }
+  window.editarStock = function(cod) {
+  const nuevoStock = prompt(`Nuevo stock inicial para ${stock[cod].descripcion} (${cod}):`, stock[cod].inicial);
+  if (nuevoStock === null) return; // cancelado
+  const cant = parseInt(nuevoStock);
+  if (!isNaN(cant) && cant >= 0) {
+    stock[cod].inicial = cant;
+    localStorage.setItem("stock", JSON.stringify(stock));
+    renderizarStock();
+  }
+};
+
+window.eliminarStock = function(cod) {
+  if (confirm(`¿Eliminar completamente el ítem "${stock[cod].descripcion}" (${cod})?`)) {
+    delete stock[cod];
+    localStorage.setItem("stock", JSON.stringify(stock));
+    renderizarStock();
+  }
+};
 });
