@@ -148,3 +148,16 @@ btnNo.onclick = () => {
 // Inicializar vistas
 renderizarRegistros();
 renderizarStock();
+const inputCodigo = document.getElementById("codigo");
+const inputDescripcion = document.getElementById("descripcion");
+
+inputCodigo.addEventListener("blur", () => {
+  const cod = inputCodigo.value.trim();
+  if (stock[cod]) {
+    inputDescripcion.value = stock[cod].descripcion;
+    inputDescripcion.readOnly = true;
+  } else {
+    inputDescripcion.value = "";
+    inputDescripcion.readOnly = false;
+  }
+});
