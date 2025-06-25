@@ -45,6 +45,13 @@ button {
   font-size: 1rem;
   z-index: 1000;
 }
+#btn-limpiar {
+  margin-top: 1rem;
+  padding: 0.6rem 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+}
 
 #btn-ver-stock {
   right: 160px;
